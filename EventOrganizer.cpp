@@ -3,10 +3,13 @@
 //
 
 #include "EventOrganizer.h"
-#include "Event.h"
+#include "Concert.h"
 #include <string>
+#include <algorithm>
 
 using namespace std;
+
+
 
 EventOrganizer::EventOrganizer(const std::string &name, const std::string &webAddress) :
         name(name), webAddress(webAddress) {}
@@ -67,3 +70,22 @@ vector<Event *> EventOrganizer::findEventsByLocation(const Location *location) c
     }
     return ret;
 }
+
+void EventOrganizer::sort(bool (*f)(Event *, Event *)) {
+    for (int j = 0; j < events.size(); j++) {
+        for (int i = 0; i < events.size() - 1; i++) {
+            if (f(events[i], events[i + 1])) {
+                swap(events[i], events[i + 1]);
+            }
+        }
+    }
+}
+
+Event *EventOrganizer::find(bool (*f)(Event *)) const {
+    return *find_if(events.begin(), events.end(), f);
+}
+
+void EventOrganizer::printEvents(PrintIfConcert f) {
+    for_each(events.begin(), events.end(), f);
+}
+

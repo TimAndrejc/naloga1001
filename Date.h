@@ -4,6 +4,7 @@
 
 #ifndef NALOGA1001_DATE_H
 #define NALOGA1001_DATE_H
+
 #include <string>
 #include <vector>
 
@@ -46,6 +47,10 @@ public:
     void setYear(int year);
 
     static Date parse(const string date);
+
+    bool operator>(Date date2) {
+        return (year * 10000 + month * 100 + day) > (date2.year * 10000 + date2.month * 100 + date2.day);
+    }
 };
 
 #endif //NALOGA1001_DATE_H

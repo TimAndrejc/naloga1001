@@ -6,10 +6,19 @@
 #define NALOGA1001_EVENTORGANIZER_H
 
 #include <string>
-#include "Event.h"
+#include "Concert.h"
 #include <vector>
 
 using namespace std;
+
+class PrintIfConcert {
+public:
+    void operator()(Event *e) {
+        if (dynamic_cast<Concert *>(e)) {
+            cout << dynamic_cast<Concert *>(e)->toString() << "\n";
+        }
+    }
+};
 
 
 class EventOrganizer {
@@ -39,6 +48,12 @@ public:
     string toString() const;
 
     vector<Event *> findEventsByLocation(const Location *location) const;
+
+    void sort(bool (*f)(Event *, Event *));
+
+    Event *find(bool (*f)(Event *)) const;
+
+    void printEvents(PrintIfConcert f);
 
 };
 

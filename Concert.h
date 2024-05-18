@@ -5,8 +5,9 @@
 #ifndef NALOGA1001_CONCERT_H
 #define NALOGA1001_CONCERT_H
 
-#include "EventOrganizer.h"
+#include "Event.h"
 #include <string>
+#include <iostream>
 
 using namespace std;
 
@@ -36,5 +37,6 @@ public:
     void setConcertType(ConcertType);
 
 };
+
 
 #endif //NALOGA1001_CONCERT_H
