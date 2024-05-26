@@ -55,6 +55,8 @@ public:
 
     void printEvents(PrintIfConcert f);
 
+    vector<Event*> findAll(bool (*f)(Event *)) const;
+
 };
 
 #endif //NALOGA1001_EVENTORGANIZER_H

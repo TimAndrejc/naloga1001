@@ -10,7 +10,6 @@
 using namespace std;
 
 
-
 EventOrganizer::EventOrganizer(const std::string &name, const std::string &webAddress) :
         name(name), webAddress(webAddress) {}
 
@@ -87,5 +86,15 @@ Event *EventOrganizer::find(bool (*f)(Event *)) const {
 
 void EventOrganizer::printEvents(PrintIfConcert f) {
     for_each(events.begin(), events.end(), f);
+}
+
+vector<Event *> EventOrganizer::findAll(bool (*f)(Event *)) const {
+    vector<Event *> returnEvents;
+    for (Event *e: events) {
+        if (f(e)) {
+            returnEvents.push_back(e);
+        }
+    }
+    return returnEvents;
 }
 

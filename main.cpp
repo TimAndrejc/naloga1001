@@ -49,7 +49,13 @@ int main() {
 
     PrintIfConcert concert;
     eventOrganizer.printEvents(concert);
+    cout << endl << "All events: " << endl;
 
+    vector<Event *> eventsAll = eventOrganizer.findAll(isForOver18);
+    for (Event *e: eventsAll) {
+        cout << e->toString() << endl;
+    }
     delete lokacija1;
+
     return 0;
 }
